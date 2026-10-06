@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html class="scroll-smooth light" lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Cristian W. Espinoza Y. | Desarrollador Web Full Stack</title>
+  
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+  
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: { 50: '#eef2ff', 400: '#818cf8', 500: '#6366f1', 600: '#4f46e5' },
+            accent: { cyan: '#06b6d4', emerald: '#10b981', violet: '#8b5cf6' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #1e293b;
+      --card-bg: #f8fafc;
+      --border-color: #e2e8f0;
+    }
+
+    .dark {
+      --bg-color: #080b11;
+      --text-color: #f1f5f9;
+      --card-bg: rgba(15, 23, 42, 0.65);
+      --border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .bg-grid-pattern {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(128, 128, 128, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(128, 128, 128, 0.05) 1px, transparent 1px);
+    }
+
+    .dark .bg-grid-pattern {
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    }
+
+    .glass-panel, .glass-card-interactive {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      backdrop-filter: blur(12px);
+      transition: all 0.3s ease;
+    }
+
+    .glass-card-interactive:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    .dark .glass-card-interactive:hover {
+      border-color: rgba(99, 102, 241, 0.4);
+      box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.6), 0 0 25px -5px rgba(99, 102, 241, 0.2);
+    }
+
+    @media (max-width: 768px) {
+      .glass-panel {
+        padding: 10px 15px;
+        border-radius: 12px;
+      }
+      h1.text-gradient {
+        font-size: 2.5rem !important;
+        line-height: 1.2;
+      }
+      .mobile-stack {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .hero-section-padding {
+        padding-top: 12rem;
+      }
+    }
+  </style>
+</head>
+<body class="font-sans antialiased bg-grid-pattern selection:bg-brand-500 selection:text-white">
+
+  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-4 sm:px-8 py-4">
+    <nav class="max-w-7xl mx-auto glass-panel rounded-2xl px-6 py-3.5 flex items-center justify-between shadow-lg dark:shadow-2xl">
+      <a class="flex items-center gap-3 group" href="#inicio">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="font-mono text-sm sm:text-base font-bold tracking-wider text-slate-800 dark:text-slate-100 group-hover:text-brand-500 transition-colors">
+          CRISTIAN W. ESPINOZA Y.
+        </span>
+      </a>
+      
+      <div class="hidden md:flex items-center gap-8">
+        <a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-brand-500 dark:hover:text-white transition-colors" href="#inicio">INICIO</a>
+        <a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-brand-500 dark:hover:text-white transition-colors" href="#sobre-mi">SOBRE MI</a>
+        <a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-brand-500 dark:hover:text-white transition-colors" href="#proyectos">PROYECTOS</a>
+        <a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-brand-500 dark:hover:text-white transition-colors" href="#contacto">CONTACTO</a>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <button id="theme-toggle" class="p-2 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition">
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:block"></i>
+        </button>
+        <a class="hidden sm:inline-flex items-center text-xs font-mono px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:border-brand-500 transition-all shadow-sm" href="#contacto">
+          <i class="fa-solid fa-terminal mr-2 text-brand-500 dark:text-cyan-400"></i>Disponible
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="relative min-h-screen pt-32 pb-20 hero-section-padding flex items-center justify-center overflow-hidden" id="inicio">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mobile-stack lg:flex lg:flex-row items-center gap-12">
+        <div class="lg:w-1/2 flex flex-col items-start mobile-stack space-y-6 text-left">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs font-mono tracking-widest uppercase text-brand-600 dark:text-cyan-400">
+            <span class="inline-block w-2 h-2 rounded-full bg-brand-500 dark:bg-cyan-400"></span>
+            HOLA, SOY CRISTIAN ESPINOZA
+          </div>
+          <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.1] text-slate-900 dark:text-white">
+            Desarrollador Web <br class="hidden sm:inline"/>
+            <span class="text-brand-600 dark:text-cyan-400">Full Stack</span>
+          </h1>
+          <p class="text-lg sm:text-xl text-slate-600 dark:text-slate-300 font-light max-w-xl border-l-2 border-brand-500/60 pl-4 py-1">
+            “Construyendo experiencias web modernas y funcionales”
+          </p>
+          <div class="pt-4 flex flex-wrap gap-4 justify-center lg:justify-start w-full">
+            <a class="px-8 py-3.5 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm transition-all" href="#proyectos">
+              Ver Proyectos <i class="fa-solid fa-arrow-down-long ml-2"></i>
+            </a>
+            <a class="px-8 py-3.5 rounded-full bg-transparent border-2 border-slate-800 dark:border-slate-200 text-slate-800 dark:text-white font-semibold text-sm hover:bg-slate-800 hover:text-white dark:hover:bg-white dark:hover:text-slate-900 transition-all" href="#contacto">
+              Contáctame
+            </a>
+          </div>
+        </div>
+        
+        <div class="lg:w-1/2 mt-12 lg:mt-0 w-full">
+          <div class="glass-card-interactive rounded-2xl p-6 shadow-xl">
+            <div class="flex items-center gap-2 border-b border-slate-200 dark:border-slate-700 pb-4 mb-4">
+              <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-500"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+              <span class="ml-2 font-mono text-xs text-slate-500">perfil.js</span>
+            </div>
+            <div class="font-mono text-sm leading-relaxed text-slate-700 dark:text-slate-300 text-left">
+              <p><span class="text-brand-600 dark:text-violet-400">const</span> desarrollador = {</p>
+              <p class="pl-4">nombre: <span class="text-emerald-600 dark:text-emerald-300">'Cristian W. Espinoza Y.'</span>,</p>
+              <p class="pl-4">habilidades: [<span class="text-amber-600 dark:text-amber-300">'HTML5', 'CSS3', 'JS', 'Stitch'</span>],</p>
+              <p class="pl-4">estado: <span class="text-brand-600 dark:text-cyan-300">'Activo'</span></p>
+              <p>};</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 border-t border-slate-200 dark:border-slate-800" id="sobre-mi">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <h2 class="text-3xl sm:text-4xl font-extrabold uppercase mb-8 text-slate-900 dark:text-white">Sobre Mí & Trayectoria</h2>
+        <div class="glass-card-interactive rounded-xl p-8 text-left">
+          <p class="text-slate-700 dark:text-slate-300 text-lg leading-relaxed mb-6">
+            Desarrollador Web Full Stack en formación, enfocado en maquetación semántica, interfaces responsivas y buenas prácticas de desarrollo. Interesado en construir soluciones funcionales combinando diseño limpio y código eficiente.
+          </p>
+          <div class="flex flex-wrap gap-3 font-mono text-sm">
+            <span class="px-3 py-1 bg-slate-200 dark:bg-slate-800 rounded-md text-slate-800 dark:text-slate-200">[HTML5]</span>
+            <span class="px-3 py-1 bg-slate-200 dark:bg-slate-800 rounded-md text-slate-800 dark:text-slate-200">[CSS3]</span>
+            <span class="px-3 py-1 bg-slate-200 dark:bg-slate-800 rounded-md text-slate-800 dark:text-slate-200">[JS]</span>
+            <span class="px-3 py-1 bg-slate-200 dark:bg-slate-800 rounded-md text-slate-800 dark:text-slate-200">[Git]</span>
+            <span class="px-3 py-1 bg-slate-200 dark:bg-slate-800 rounded-md text-slate-800 dark:text-slate-200">[Figma]</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 border-t border-slate-200 dark:border-slate-800" id="proyectos">
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <h2 class="text-3xl sm:text-4xl font-extrabold uppercase mb-12 text-slate-900 dark:text-white">Proyectos Destacados</h2>
+        
+        <!-- Cambiado a grid-cols-2 para que se vean 4 proyectos ordenados -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          
+          <article class="glass-card-interactive rounded-2xl p-6 flex flex-col h-full text-left border border-slate-300 dark:border-slate-700">
+            <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white">1. Portafolio / CV Personal</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mb-4 font-mono">Diseño Portafolio | Stitch de Google, HTML, CSS</p>
+            <div class="mt-auto grid grid-cols-2 gap-3 pt-4 border-t border-slate-200 dark:border-slate-700">
+              <a href="#inicio" class="text-center py-2 bg-brand-600 text-white rounded-lg text-sm font-bold">VER DEMO</a>
+              <a href="#" class="text-center py-2 border border-slate-800 dark:border-slate-400 text-slate-900 dark:text-white rounded-lg text-sm font-bold">CÓDIGO</a>
+            </div>
+          </article>
+
+          <article class="glass-card-interactive rounded-2xl p-6 flex flex-col h-full text-left border border-slate-300 dark:border-slate-700">
+            <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white">2. Landing Page Responsiva</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mb-4 font-mono">Landing page | HTML, CSS</p>
+            <div class="mt-auto grid grid-cols-2 gap-3 pt-4 border-t border-slate-200 dark:border-slate-700">
+              <a href="#" class="text-center py-2 bg-brand-600 text-white rounded-lg text-sm font-bold">DEMO</a>
+              <a href="#" class="text-center py-2 border border-slate-800 dark:border-slate-400 text-slate-900 dark:text-white rounded-lg text-sm font-bold">CÓDIGO</a>
+            </div>
+          </article>
+
+          <article class="glass-card-interactive rounded-2xl p-6 flex flex-col h-full text-left border border-slate-300 dark:border-slate-700">
+            <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white">3. Aplicación Web Interactiva</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mb-4 font-mono">App interactiva | JavaScript, CSS</p>
+            <div class="mt-auto grid grid-cols-2 gap-3 pt-4 border-t border-slate-200 dark:border-slate-700">
+              <a href="#" class="text-center py-2 bg-brand-600 text-white rounded-lg text-sm font-bold">DEMO</a>
+              <a href="#" class="text-center py-2 border border-slate-800 dark:border-slate-400 text-slate-900 dark:text-white rounded-lg text-sm font-bold">CÓDIGO</a>
+            </div>
+          </article>
+
+          <article class="glass-card-interactive rounded-2xl p-6 flex flex-col h-full text-left border border-slate-300 dark:border-slate-700">
+            <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white">4. Sitio Web Dinámico</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mb-4 font-mono">E-commerce básico | JS, API, Git</p>
+            <div class="mt-auto grid grid-cols-2 gap-3 pt-4 border-t border-slate-200 dark:border-slate-700">
+              <a href="#" class="text-center py-2 bg-brand-600 text-white rounded-lg text-sm font-bold">DEMO</a>
+              <a href="#" class="text-center py-2 border border-slate-800 dark:border-slate-400 text-slate-900 dark:text-white rounded-lg text-sm font-bold">CÓDIGO</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 border-t border-slate-200 dark:border-slate-800" id="contacto">
+      <div class="max-w-2xl mx-auto px-4">
+        <div class="text-center mb-10">
+          <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-2">Contacto</h2>
+          <p class="text-slate-600 dark:text-slate-400 italic">¿Tienes una idea o proyecto? ¡Hablemos!</p>
+        </div>
+        
+        <div class="glass-card-interactive rounded-2xl p-8 shadow-lg">
+          <form id="contactForm" class="space-y-6">
+            <div>
+              <label class="block text-sm font-bold mb-2 text-slate-800 dark:text-slate-200" for="nombre">Nombre</label>
+              <input class="w-full p-3 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-brand-500 text-slate-900 dark:text-white" id="nombre" type="text" required placeholder="Tu nombre" />
+            </div>
+            <div>
+              <label class="block text-sm font-bold mb-2 text-slate-800 dark:text-slate-200" for="email">Email</label>
+              <input class="w-full p-3 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-brand-500 text-slate-900 dark:text-white" id="email" type="email" required placeholder="tu@email.com" />
+            </div>
+            <div>
+              <label class="block text-sm font-bold mb-2 text-slate-800 dark:text-slate-200" for="mensaje">MENSAJE</label>
+              <textarea class="w-full p-3 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-brand-500 text-slate-900 dark:text-white" id="mensaje" rows="4" required placeholder="Escribe aquí..."></textarea>
+            </div>
+            <button id="submitBtn" class="w-full py-3 rounded-lg bg-brand-600 hover:bg-brand-700 text-white font-bold tracking-widest uppercase transition-all" type="submit">
+              ENVIAR
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="py-8 border-t border-slate-200 dark:border-slate-800 text-center">
+    <p class="text-sm text-slate-600 dark:text-slate-400 font-mono">
+      © 2026 Cristian Espinoza - Todos los derechos reservados.
+    </p>
+  </footer>
+
+  <script>
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const htmlElement = document.documentElement;
+
+    themeToggleBtn.addEventListener('click', () => {
+      htmlElement.classList.toggle('dark');
+      if (htmlElement.classList.contains('dark')) {
+        localStorage.setItem('theme', 'dark');
+      } else {
+        localStorage.setItem('theme', 'light');
+      }
+    });
+
+    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      htmlElement.classList.add('dark');
+    } else {
+      htmlElement.classList.remove('dark');
+    }
+
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault(); 
+
+      const originalText = submitBtn.innerHTML;
+      
+      submitBtn.innerHTML = '¡ENVIADO CON ÉXITO! <i class="fa-solid fa-check ml-2"></i>';
+      submitBtn.classList.remove('bg-brand-600', 'hover:bg-brand-700');
+      submitBtn.classList.add('bg-emerald-500', 'hover:bg-emerald-600');
+
+      setTimeout(() => {
+        submitBtn.innerHTML = originalText;
+        submitBtn.classList.remove('bg-emerald-500', 'hover:bg-emerald-600');
+        submitBtn.classList.add('bg-brand-600', 'hover:bg-brand-700');
+        contactForm.reset();
+      }, 3000);
+    });
+  </script>
+</body>
+</html>
